@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "motorControl.h"
+#include "motor_control.h"
 
 unsigned int stepper_delay = 10; //in microsecond
 
@@ -219,3 +219,4 @@ void help()
   Serial.println("Return delay value.");
   Serial.println();
 }
+
