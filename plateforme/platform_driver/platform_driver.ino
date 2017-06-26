@@ -12,7 +12,6 @@ char input_buffer[BUFFER_SIZE];
 void loop()
 {
   read_buffer(input_buffer, BUFFER_SIZE);
-  Serial.print(input_buffer);
 
   digitalWrite(EN, LOW); //Pull enable pin low to set FETs active and allow motor control
 
