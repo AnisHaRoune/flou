@@ -1,8 +1,8 @@
-# Montage specifications
+# Platform control
+## Montage specifications
 Each turn moves the platform by 2 mm.  
 There is 6400 steps by turn.  
 Each step moves the platform by 0.3125 um.  
-# Platform control
 ## Stepper motor control commands
 {command_char}[[sign]{value}[unit]]{end_char}  
 [[sign]{value}[unit]] may be omitted if {command_char} do not need it or if used as a getter-setter.  
