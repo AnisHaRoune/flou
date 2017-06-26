@@ -163,10 +163,13 @@ void help()
   Serial.println();
   
   Serial.println("Stepper motor control commands:");
-  Serial.println("{command_char}[sign][value][unit]{end_char}");
+  Serial.println("{command_char}[[sign]{value}[unit]]{end_char}");
+  Serial.println("[[sign]{value}[unit]] may be omitted if {command_char} do not need it.");
+  Serial.println("[[sign]{value}[unit]] may be omitted if {command_char} is used as a getter-setter.");
   Serial.println("[sign] is optional.");
-  Serial.println("[value] may be omitted if {command_char} do not need it.");
-  Serial.println("[value] may be omitted if {command_char} is used as a getter-setter.");
+  Serial.print("[unit] is only used with the ");
+  Serial.print(MOVE_CHAR);
+  Serial.println(" {command_char}.");
   Serial.print("Buffer size is ");
   Serial.print(BUFFER_SIZE);
   Serial.println(" character.");
@@ -175,18 +178,15 @@ void help()
   Serial.print(TURN_CHAR);
   Serial.println("\t: Turns the lead screw");
   Serial.print(MOVE_CHAR);
-  Serial.println("\t: Moves the platform in [unity]. May be ");
-  Serial.print(CM_STR);
+  Serial.print("\t: Moves the platform in [unity]. May be ");
+  Serial.print(CM_CHAR);
   Serial.print(", ");
-  Serial.print(MM_STR);
+  Serial.print(MM_CHAR);
   Serial.print(" or ");
-  Serial.print(UM_STR);
-  Serial.print(". Default is ");
-  Serial.println(DEFAULT_UNIT);
+  Serial.println(UM_CHAR);
   Serial.print(DELAY_CHAR);
-  Serial.print("\t: Sets the delay in microsecond between each half step (default is ");
-  Serial.print(stepper_delay);
-  Serial.println(")");
+  Serial.print("\t: Sets the delay in microsecond between each half step. Default is ");
+  Serial.println(stepper_delay);
   Serial.print(FORWARD_CALIBRATION_CHAR);
   Serial.println("\t: Moves the platform to the front");
   Serial.print(BACKWARD_CALIBRATION_CHAR);
@@ -203,9 +203,11 @@ void help()
   Serial.println();
   
   Serial.print("Example: ");
-  Serial.print(MM_CHAR);
-  Serial.println("-18.5");
-  Serial.println("Move backward 18.5mm.");
+  Serial.print(MOVE_CHAR);
+  Serial.print("-18.5");
+  Serial.print(CM_CHAR);
+  Serial.println("m");
+  Serial.println("Move backward 18.5 cm.");
   Serial.println();
   
   Serial.print("Example: ");

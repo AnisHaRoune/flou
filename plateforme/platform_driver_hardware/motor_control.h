@@ -21,10 +21,9 @@
 #define STEP_CHAR                 's'
 #define TURN_CHAR                 't'
 #define MOVE_CHAR                 'm'
-#define CM_STR                    "cm"
-#define MM_STR                    "mm"
-#define UM_STR                    "um"
-#define DEFAULT_UNIT              MM_STR
+#define CM_CHAR                   'c'
+#define MM_CHAR                   'm'
+#define UM_CHAR                   'u'
 #define DELAY_CHAR                'd'
 #define SOFT_STOP_CHAR            'x'
 #define END_CHAR                  '\n'
