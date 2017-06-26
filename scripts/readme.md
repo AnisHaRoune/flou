@@ -3,7 +3,7 @@
 Each turn moves the platform by 2 mm.  
 There is 6400 steps by turn.  
 Each step moves the platform by 0.3125 um.  
-### Stepper motor control commands
+## Stepper motor control commands
 {command_char}[[sign]{value}[unit]]{end_char}  
 [[sign]{value}[unit]] may be omitted if {command_char} do not need it or if used as a getter-setter.  
 [sign] is optional.  
@@ -17,7 +17,7 @@ Buffer size is 16 character.
 * b   : Moves the platform to the back  
 * x   : Stops the current action  
 * \n  : Ending character  
-#### Exemples
+### Exemples
 `s400`      : Move forward 400 steps.  
 `m-18.5cm`  : Move backward 18.5 cm.  
 `d39`       : Set delay at 39 microsecond.  
