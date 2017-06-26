@@ -7,5 +7,5 @@ stty -F /dev/serial0 cs8 9600 ignbrk -brkint -icrnl -imaxbel -opost -onlcr -isig
 while true
 do
 	read input
-	echo "$input\n" > /dev/serial0
+	echo "$input" > /dev/serial0
 done
