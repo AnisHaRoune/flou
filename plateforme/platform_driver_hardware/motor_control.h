@@ -9,8 +9,8 @@
 #define MS2 5
 #define MS3 6
 #define EN  7
-#define FRONT_SWITCH  19
-#define BACK_SWITCH   18
+#define FRONT_SWITCH  18
+#define BACK_SWITCH   19
 
 #define FORWARD HIGH
 #define BACKWARD LOW

@@ -180,10 +180,11 @@ void help()
   Serial.print(MOVE_CHAR);
   Serial.print("\t: Moves the platform in [unity]. May be ");
   Serial.print(CM_CHAR);
-  Serial.print(", ");
+  Serial.print("m, ");
   Serial.print(MM_CHAR);
-  Serial.print(" or ");
-  Serial.println(UM_CHAR);
+  Serial.print("m or ");
+  Serial.print(UM_CHAR);
+  Serial.println("m");
   Serial.print(DELAY_CHAR);
   Serial.print("\t: Sets the delay in microsecond between each half step. Default is ");
   Serial.println(stepper_delay);
