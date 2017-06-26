@@ -5,8 +5,7 @@ Each step moves the platform by 0.3125 um.
 # Platform control
 ## Stepper motor control commands
 {command_char}[[sign]{value}[unit]]{end_char}  
-[[sign]{value}[unit]] may be omitted if {command_char} do not need it.  
-[[sign]{value}[unit]] may be omitted if {command_char} is used as a getter-setter.  
+[[sign]{value}[unit]] may be omitted if {command_char} do not need it or if used as a getter-setter.  
 [sign] is optional.  
 [unit] is only used with the m {command_char}.  
 Buffer size is 16 character.  
