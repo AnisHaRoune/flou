@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     line(cross, cv::Point(hcenter, 0), cv::Point(hcenter, height), cv::Scalar(0, 255, 0));
     line(cross, cv::Point(0, vcenter), cv::Point(width, vcenter), cv::Scalar(0, 255, 0));
 
-    //line thickness is broken, double line used instead
+    //line thickness is broken, double line used instead (https://stackoverflow.com/questions/24682797/python-opencv-drawing-line-width)
     if (width % 2 == 0)
     {
         line(cross, cv::Point(hcenter + 1, 0), cv::Point(hcenter + 1, height), cv::Scalar(0, 255, 0));
