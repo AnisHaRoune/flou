@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-argc=4
-if [[ $# -ne $argc ]]; then
-    echo "Illegal number of parameters. Must be $argc."
-    exit 1
+if [[ "$#" -ne 3 ]]; then
+    echo "Illegal number of parameters. Must be 3."
+
+
 fi
 re='^[0-9]+$'
 if ! [[ $1 =~ $re ]] ; then
@@ -20,21 +20,29 @@ if ! [[ $3 != cm || $3 != mm || $3 != um ]] ; then
 fi
 
 mkdir -p captures
+
 stty -F /dev/serial0 cs8 9600 ignbrk -brkint -icrnl -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts
+
 exec 3<> /dev/serial0
+
+#coproc platform { bash ../platform-controller/platform-controller.sh; }
+
+#echo platform_PID=${platform_PID}
 
 for (( i=0; i<$(($1)); i++ ))
 do
     # Prend une capture d'image
     path="captures/$4$i.jpg"
-    fswebcam -q -r 1280x720 $path
+    fswebcam -q $path
     echo $path
 
     #Deplace la plateforme
+    #echo "m$2$3" >& ${platform[1]}
     echo "m$2$3" >&3
     echo "m$2$3"
 
     #Attend la fin du mouvement
+    #while read -ru ${platform[0]} output
     while read -ru 3 output
     do
         echo $output
@@ -46,3 +54,6 @@ do
         fi
     done
 done
+
+#kill ${platform_PID}
+echo over
