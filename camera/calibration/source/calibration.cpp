@@ -11,6 +11,7 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    std::cout << cap.get(CV_CAP_PROP_FOURCC) << "\n";
     cv::Mat frame;
     while (cv::waitKey(33) != 27) //30 FPS, escape key to exit
     {
