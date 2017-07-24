@@ -7,7 +7,7 @@ Ce projet est le code qui pilote le moteur pour la plateforme. Les spécificatio
 Série //TODO: détails
 
 ## Commandes
-Voici le résultat de la command "h" (help) du pilote :  
+Voici le résultat de la command "h" (help) du pilote :    
 Montage specifications:  
 Each turn moves the platform by 2 mm.  
 There is 6400 steps by turn.  
