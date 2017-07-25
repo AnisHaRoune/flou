@@ -2,6 +2,7 @@
 
 void setup()
 {
+  pinMode(DEBUG_LED, OUTPUT);
   motorControlSetup();
   Serial.begin(9600);
   Serial.println("Begin platform driver");
@@ -13,6 +14,7 @@ void loop()
 {
   read_buffer(input_buffer, BUFFER_SIZE);
 
+  digitalWrite(DEBUG_LED, HIGH);
   digitalWrite(EN, LOW); //Pull enable pin low to set FETs active and allow motor control
 
   char command = input_buffer[0];
@@ -65,6 +67,7 @@ void loop()
   }
 
   digitalWrite(EN, HIGH); //Pull enable pin high to set FETs active and stop motor control and noises
+  digitalWrite(DEBUG_LED, LOW);
 }
 
 void move_platform(char input_buffer[], size_t buffer_size)

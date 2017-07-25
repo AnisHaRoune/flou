@@ -9,6 +9,7 @@
 #define MS2 5
 #define MS3 6
 #define EN  7
+#define DEBUG_LED 9
 #define FRONT_SWITCH  18
 #define BACK_SWITCH   19
 

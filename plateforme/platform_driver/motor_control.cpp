@@ -173,12 +173,14 @@ void help()
   Serial.print("Buffer size is ");
   Serial.print(BUFFER_SIZE);
   Serial.println(" character.");
+  Serial.print(HELP_CHAR);
+  Serial.println("\t: Print the help");
   Serial.print(STEP_CHAR);
-  Serial.println("\t: Steps the motor");
+  Serial.println("\t: Step the motor");
   Serial.print(TURN_CHAR);
-  Serial.println("\t: Turns the lead screw");
+  Serial.println("\t: Turn the lead screw");
   Serial.print(MOVE_CHAR);
-  Serial.print("\t: Moves the platform in [unity]. May be ");
+  Serial.print("\t: Move the platform in [unity]. May be ");
   Serial.print(CM_CHAR);
   Serial.print("m, ");
   Serial.print(MM_CHAR);
@@ -186,14 +188,14 @@ void help()
   Serial.print(UM_CHAR);
   Serial.println("m");
   Serial.print(DELAY_CHAR);
-  Serial.print("\t: Sets the delay in microsecond between each half step. Default is ");
+  Serial.print("\t: Set the delay in microsecond between each half step. Default is ");
   Serial.println(stepper_delay);
   Serial.print(FORWARD_CALIBRATION_CHAR);
-  Serial.println("\t: Moves the platform to the front");
+  Serial.println("\t: Move the platform to the front");
   Serial.print(BACKWARD_CALIBRATION_CHAR);
-  Serial.println("\t: Moves the platform to the back");
+  Serial.println("\t: Move the platform to the back");
   Serial.print(SOFT_STOP_CHAR);
-  Serial.println("\t: Stops the current action");
+  Serial.println("\t: Stop the current action");
   Serial.println("\\n\t: Ending character");
   Serial.println();
   
