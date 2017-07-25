@@ -24,14 +24,15 @@ Stepper motor control commands:
 [sign] is optional.  
 [unit] is only used with the m {command_char}.  
 Buffer size is 16 character.  
-s   : Steps the motor  
-t   : Turns the lead screw  
-m   : Moves the platform in [unity]. May be cm, mm or um  
-d   : Sets the delay in microsecond between each half step. Default is 10  
-f   : Moves the platform to the front  
-b   : Moves the platform to the back  
-x   : Stops the current action  
-\n  : Ending character  
+h   : Print the help  
+s   : Step the motor  
+t   : Turn the lead screw  
+m   : Move the platform in [unity]. May be cm, mm or um  
+d   : Set the delay in microsecond between each half step. Default is 10  
+f   : Move the platform to the front  
+b   : Move the platform to the back  
+x   : Stop the current action  
+\n  : Ending character   
   
 Example: s400  
 Move forward 400 steps.  

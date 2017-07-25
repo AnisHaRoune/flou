@@ -10,6 +10,7 @@ if ! [[ $1 =~ $re ]] ; then
     echo "error: $1 is not a number" >&2
     exit 1
 fi
+#BUG: devrait accepter les nombres négatifs
 if ! [[ $2 =~ $re ]] ; then
     echo "error: $2 is not a number" >&2
     exit 1

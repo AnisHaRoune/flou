@@ -4,7 +4,7 @@
 Cet outil permet de prendre des photos à interval régulier sur une plage de distance, grâce à la plateforme.
 
 ## Utilisation
-Paramètres :
+Paramètres obligatoires :
 1. nombre de photo
 2. distance des intervales
 3. Unité de distance
