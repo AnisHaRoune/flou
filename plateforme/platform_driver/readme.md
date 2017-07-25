@@ -10,9 +10,9 @@ Série //TODO: détails (wiki?)
 Voici le résultat de la command "h" (help) du pilote :  
   
 Montage specifications:  
+There is 6400 microsteps by turn.  
 Each turn moves the platform by 2 mm.  
-There is 6400 steps by turn.  
-Each step moves the platform by 0.3125 um.  
+Each step moves the platform by 0.3125 um.   
   
 Stepper motor control commands:  
 {command_char}[[sign]{value}[unit]]{end_char}    
