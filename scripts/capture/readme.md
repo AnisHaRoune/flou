@@ -3,6 +3,11 @@
 ## Description
 Cet outil permet de prendre des photos à interval régulier sur une plage de distance, grâce à la plateforme.
 
+## Dépendance
+```bash
+apt-get install fswebcam
+```
+
 ## Utilisation
 Paramètres obligatoires :
 1. nombre de photo

@@ -1,7 +1,7 @@
 # Pilote de plateforme
 
 ## Description
-Ce projet est le code qui pilote le moteur pour la plateforme. Les spécifications détaillées du [circuit](https://www.github.com) et de la [plateforme](https://www.github.com) sont disponible sur le wiki.
+Ce projet est le code qui pilote le moteur pour la plateforme. Les spécifications détaillées du [circuit](https://www.github.com) et de la [plateforme](https://github.com/steven-pigeon/flou/wiki/Plans-de-la-plateforme) sont disponible sur le wiki.
 
 ## Communication
 Série //TODO: détails (wiki?)
@@ -10,9 +10,9 @@ Série //TODO: détails (wiki?)
 Voici le résultat de la command "h" (help) du pilote :  
   
 Montage specifications:  
+There is 6400 microsteps by turn.  
 Each turn moves the platform by 2 mm.  
-There is 6400 steps by turn.  
-Each step moves the platform by 0.3125 um.  
+Each step moves the platform by 0.3125 um.   
   
 Stepper motor control commands:  
 {command_char}[[sign]{value}[unit]]{end_char}    

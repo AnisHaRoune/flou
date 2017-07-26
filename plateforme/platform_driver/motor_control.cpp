@@ -151,12 +151,12 @@ void set_resolution(int resolution)
 void help()
 {
   Serial.println("Montage specifications:");
+  Serial.print("There is ");
+  Serial.print(STEP_BY_TURN);
+  Serial.println(" microsteps by turn.");
   Serial.print("Each turn moves the platform by ");
   Serial.print(MM_BY_TURN);
   Serial.println(" mm.");
-  Serial.print("There is ");
-  Serial.print(STEP_BY_TURN);
-  Serial.println(" steps by turn.");
   Serial.print("Each step moves the platform by ");
   Serial.print(MM_BY_TURN / (float)STEP_BY_TURN * 1000.0, 4);
   Serial.println(" um.");
