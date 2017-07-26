@@ -28,7 +28,7 @@ for (( i=0; i<$(($1)); i++ ))
 do
     # Prend une capture d'image
     path="captures/$4$i.jpg"
-    fswebcam -q -p GREY "$path%S" -F 5 -R
+    fswebcam -q -r 1280x960 --no-banner "$path"
     echo $path
 
     #Deplace la plateforme
