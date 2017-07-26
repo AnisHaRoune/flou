@@ -18,4 +18,4 @@ make
 ```bash
 ./calibration
 ```
-La touche ESC permet de quitter.
+Les flèches haut et bas permettent d'ajuster la hauteur de la ligne horizontale et la touche ESC permet de quitter.
