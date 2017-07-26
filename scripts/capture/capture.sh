@@ -7,10 +7,10 @@ if [[ $# -ne $argc ]]; then
 fi
 re='^[0-9]+$'
 if ! [[ $1 =~ $re ]] ; then
-    echo "error: $1 is not a number" >&2
+    echo "error: $1 is not a positive number" >&2
     exit 1
 fi
-#BUG: devrait accepter les nombres négatifs
+re='\-?[0-9]+'
 if ! [[ $2 =~ $re ]] ; then
     echo "error: $2 is not a number" >&2
     exit 1
