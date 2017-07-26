@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     }
 
     bool first_frame = true;
-    int width, height, hcenter, vcenter, hthickness, vthickness;
+    int width, height, hcenter, vcenter;
     cv::Mat frame;
     int key = 0;
     do
@@ -29,8 +29,6 @@ int main(int argc, char* argv[])
             height = frame.size().height; 
             hcenter = width / 2;
             vcenter = height / 2;
-            hthickness = width % 2 == 0 ? 1 : 0;
-            vthickness = height % 2 == 0 ? 1 : 0;
             first_frame = false;
         }
 
@@ -47,8 +45,17 @@ int main(int argc, char* argv[])
 
 
         cv::Mat cross(frame.size(), frame.type());
-        line(cross, cv::Point(hcenter, 0), cv::Point(hcenter, height), cv::Scalar(0, 255, 0), hthickness);
-        line(cross, cv::Point(0, vcenter), cv::Point(width, vcenter), cv::Scalar(0, 255, 0), vthickness);
+        line(cross, cv::Point(hcenter, 0), cv::Point(hcenter, height), cv::Scalar(0, 255, 0), 1);
+        line(cross, cv::Point(0, vcenter), cv::Point(width, vcenter), cv::Scalar(0, 255, 0), 1);
+        //line thickness is imprecise, so it's doubled manually
+        if (width % 2 == 0) 
+        {
+            line(cross, cv::Point(hcenter + 1, 0), cv::Point(hcenter + 1, height), cv::Scalar(0, 255, 0), 1);
+        }
+        if (height % 2 == 0)
+        {
+            line(cross, cv::Point(0, vcenter + 1), cv::Point(width, vcenter + 1), cv::Scalar(0, 255, 0), 1);
+        }
 
         cv::addWeighted(frame, 0.5, cross, 0.5, 0.0, frame);
 
