@@ -11,9 +11,11 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    std::cout << cap.get(CV_CAP_PROP_FOURCC) << "\n";
+    bool first_frame = true;
+    int width, height, hcenter, vcenter, hthickness, vthickness;
     cv::Mat frame;
-    while (cv::waitKey(33) != 27) //30 FPS, escape key to exit
+    int key = 0;
+    do
     {
         cap >> frame;
         if (frame.empty())
@@ -21,15 +23,30 @@ int main(int argc, char* argv[])
             std::cerr << "Error while taking snapshot\n";
             break;
         }
+        if (first_frame)
+        {
+            width = frame.size().width; 
+            height = frame.size().height; 
+            hcenter = width / 2;
+            vcenter = height / 2;
+            hthickness = width % 2 == 0 ? 1 : 0;
+            vthickness = height % 2 == 0 ? 1 : 0;
+            first_frame = false;
+        }
 
-        int width = frame.size().width; 
-        int height = frame.size().height; 
-        int hcenter = width / 2;
-        int vcenter = height / 2;
-        int hthickness = width % 2 == 0 ? 1 : 0;
-        int vthickness = height % 2 == 0 ? 1 : 0;
+        key = cv::waitKey(33);
+        switch (key)
+        {
+            case 84:
+                vcenter++;
+                break;
+            case 82:
+                vcenter--;
+                break;
+        }
 
-        cv::Mat cross(frame.size());
+
+        cv::Mat cross(frame.size(), frame.type());
         line(cross, cv::Point(hcenter, 0), cv::Point(hcenter, height), cv::Scalar(0, 255, 0), hthickness);
         line(cross, cv::Point(0, vcenter), cv::Point(width, vcenter), cv::Scalar(0, 255, 0), vthickness);
 
@@ -37,6 +54,7 @@ int main(int argc, char* argv[])
 
         imshow("Calibration", frame);
     }
+    while (key != 27); //30 FPS, escape key to exit
 
     return 0;
 }
