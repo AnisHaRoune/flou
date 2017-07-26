@@ -1,7 +1,7 @@
 # Pilote de plateforme
 
 ## Description
-Ce projet est le code qui pilote le moteur pour la plateforme. Les spécifications détaillées du [circuit](https://www.github.com) et de la [plateforme](https://www.github.com) sont disponible sur le wiki.
+Ce projet est le code qui pilote le moteur pour la plateforme. Les spécifications détaillées du [circuit](https://www.github.com) et de la [plateforme](https://github.com/steven-pigeon/flou/wiki/Plans-de-la-plateforme) sont disponible sur le wiki.
 
 ## Communication
 Série //TODO: détails (wiki?)
