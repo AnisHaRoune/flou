@@ -4,12 +4,13 @@
 int main(int argc, char* argv[])
 {
     cv::VideoCapture cap;
-
     if (!cap.open(0))
     {
         std::cerr << "Error while opening the camera\n";
         return -1;
     }
+    cap.set(CV_CAP_PROP_FRAME_WIDTH, 1280);
+    cap.set(CV_CAP_PROP_FRAME_HEIGHT, 960);
 
     bool first_frame = true;
     int width, height, hcenter, vcenter;
