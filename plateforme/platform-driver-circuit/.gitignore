@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!platform-driver-circuit.fzz
+!outputs/platform-driver-circuit_circuit_imprime.png
+!outputs/platform-driver-circuit_schema.png
