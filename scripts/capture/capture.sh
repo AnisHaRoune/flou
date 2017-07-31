@@ -7,10 +7,10 @@ if [[ $# -ne $argc ]]; then
 fi
 re='^[0-9]+$'
 if ! [[ $1 =~ $re ]] ; then
-    echo "error: $1 is not a number" >&2
+    echo "error: $1 is not a positive number" >&2
     exit 1
 fi
-#BUG: devrait accepter les nombres négatifs
+re='\-?[0-9]+'
 if ! [[ $2 =~ $re ]] ; then
     echo "error: $2 is not a number" >&2
     exit 1
@@ -28,7 +28,7 @@ for (( i=0; i<$(($1)); i++ ))
 do
     # Prend une capture d'image
     path="captures/$4$i.jpg"
-    fswebcam -q -p GREY "$path%S" -F 5 -R
+    fswebcam -q -r 1280x960 --no-banner "$path"
     echo $path
 
     #Deplace la plateforme
