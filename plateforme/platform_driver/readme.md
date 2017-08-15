@@ -1,10 +1,10 @@
 # Pilote de plateforme
 
 ## Description
-Ce projet est le code qui pilote le moteur pour la plateforme. Les spécifications détaillées du [circuit](https://www.github.com) et de la [plateforme](https://github.com/steven-pigeon/flou/wiki/Plans-de-la-plateforme) sont disponible sur le wiki.
+Ce projet est le code qui pilote le moteur pour la plateforme. Les spécifications détaillées du [circuit](https://github.com/steven-pigeon/flou/wiki/Circuit-du-pilote-de-la-plateforme) et de la [plateforme](https://github.com/steven-pigeon/flou/wiki/Plans-de-la-plateforme) sont disponible sur le wiki.
 
 ## Communication
-Série //TODO: détails (wiki?)
+Le pilote peut enovyer et recevoir des commandes grâce à un port série. Les spécifications du protocole et les configurations à faire sont disponibles [ici](https://github.com/steven-pigeon/flou/wiki/Code-du-pilote-de-la-plateforme#communication-s%C3%A9rie-avec-le-pilote)
 
 ## Utilisation
 Voici le résultat de la command "h" (help) du pilote :  
