@@ -4,7 +4,7 @@
 Cet outil communique avec le pilote de la plateforme grâce au port série GPIO du Raspberry Pi.
 
 ## Configuration du Raspberry Pi
-//TODO
+Le port série du Raspberry Pi doit être configuré d'une certaine manière pour pouvoir communiquer avec le pilote. La [procédure](https://github.com/steven-pigeon/flou/wiki/Communication-s%C3%A9rie) se trouve dans le wiki.
 
 ## Utilisation
 ```bash
