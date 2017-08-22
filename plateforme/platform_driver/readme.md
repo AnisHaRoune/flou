@@ -9,7 +9,7 @@ Le pilote peut enovyer et recevoir des commandes grâce à un port série 9600/8
 ## Utilisation
 Voici le résultat de la command "h" (help) du pilote :  
   
-Montage specifications:  
+```Montage specifications:  
 There is 6400 microsteps by turn.  
 Each turn moves the platform by 2 mm.  
 Each step moves the platform by 0.3125 um.   
@@ -41,4 +41,4 @@ Example: d39
 Set delay at 39 microsecond.  
   
 Example: d  
-Return delay value.  
+Return delay value.```

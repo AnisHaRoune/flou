@@ -15,7 +15,7 @@ Une fois l'outils démarré, il suffit de taper les commandes du pilote et le r�
 ### Commandes
 Voici le résultat de la command "h" (help) envoyé au pilote :  
   
-Montage specifications:  
+```Montage specifications:  
 There is 6400 microsteps by turn.  
 Each turn moves the platform by 2 mm.  
 Each step moves the platform by 0.3125 um.   
@@ -47,4 +47,4 @@ Example: d39
 Set delay at 39 microsecond.  
   
 Example: d  
-Return delay value.  
+Return delay value.```

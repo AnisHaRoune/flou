@@ -5,9 +5,8 @@ Affiche une vue de la camera avec la meilleur resolution possible et une croix e
 
 ## Installation
 ### Dépendances
-//TODO
-//OpenCV, Cmake, etc...
 ```apt-get install libopencv-dev```
+//TODO: Il manque sûrement beaucoup d'information ici (exemple: CMake).
 ### Compilation
 ```bash
 cmake .
