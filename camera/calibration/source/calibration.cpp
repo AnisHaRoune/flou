@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
                 crosshairs = !crosshairs;
                 break;
             case '\n':
-                plot_roi(frame, rect_left, vcenter, rect_width);
+                //plot_roi(frame, rect_left, vcenter, rect_width);
                 break;
             case 84:
                 voffset++; //down
@@ -95,6 +95,7 @@ int main(int argc, char* argv[])
                 return 0;
         }
 
+        plot_roi(frame, rect_left, vcenter, rect_width);
         if (crosshairs)
         {
             draw_cross(frame, width, height, hoffset, voffset);
