@@ -85,7 +85,13 @@ int main(int argc, char* argv[])
             case 82: // up
                 voffset--;
                 break;
-            case 27:
+            case 81: //left
+                hoffset--;
+                break;
+            case 83: //right
+                hoffset++;
+                break;
+            case 27: //ESC
                 return 0;
         }
 
