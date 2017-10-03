@@ -9,6 +9,10 @@
 /home/pi/Documents/flou/camera/calibration/source/calibration.cpp
 stdio.h
 -
+iostream
+-
+fstream
+-
 opencv2/opencv.hpp
 -
 
