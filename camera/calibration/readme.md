@@ -1,7 +1,7 @@
 # Outils de calibration de la caméra
 
 ## Description
-Affiche une vue de la camera avec la meilleur resolution possible et une croix en son centre.
+Affiche une vue de la camera avec la meilleur resolution possible et un viseur en son centre.
 
 ## Installation
 ### Dépendances
@@ -17,4 +17,7 @@ make
 ```bash
 ./calibration
 ```
-Les flèches haut et bas permettent d'ajuster la hauteur de la ligne horizontale et la touche ESC permet de quitter.
+La touche ESPACE allume ou eteint le viseur de calibration.  
+Les flèches haut, bas, gauche et droite permettent d'ajuster la position verticale et horizontale du viseur. Le viseur commence toujours au centre.  
+La touche ENTREE creer un fichier "plot/points.data". Ce fichier est une liste de la valeur de tous les pixels sur la ligne horizontale au centre du rectangle. Ce fichier est utilisable par gnuplot.  
+La touche ESC permet de quitter.
