@@ -33,23 +33,15 @@ void plot_roi(cv::Mat& frame, int x, int y, int width)
 
     points.close();
 
-    FILE *pipe = popen("gnuplot -persist", "w");
-    fprintf(pipe, "set xrange [ 0.00000 : 255.000 ] noreverse nowriteback\n");
-    fprintf(pipe, "set yrange [ 0.00000 : 255.000 ] noreverse nowriteback\n");
-    fprintf(pipe, "plot \'points.data\', 255*((2*besj1((x-125)/6))/((x-125)/6))**2\n");
-    fflush(pipe);
+    system("gnuplot -e \"set xrange [ 0.00000 : 255.000 ] noreverse nowriteback\"");
+    system("gnuplot -e \"set yrange [ 0.00000 : 255.000 ] noreverse nowriteback\"");
+    system("gnuplot -e \"plot \\\"points.data\\\", 750*((2*besj1((x-125)/6))/((x-125)/6))**2\" -p");
 
     while (true)
     {
         switch(cv::waitKey())
         {
-            case '\n':
-                fprintf(pipe, "plot \'points.data\', 750*((2*besj1((x-125)/6))/((x-125)/6))**2\n");
-                fflush(pipe);
-                break;
-            case 27: //ESC
-                pclose(pipe);
-                return;
+	  
         }
     }
 }
