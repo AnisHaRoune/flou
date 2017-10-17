@@ -1,0 +1,3 @@
+/home/pi/Documents/flou/camera/diffraction-fitting/CMakeFiles/edit_cache.dir
+/home/pi/Documents/flou/camera/diffraction-fitting/CMakeFiles/rebuild_cache.dir
+/home/pi/Documents/flou/camera/diffraction-fitting/CMakeFiles/diffraction-fitting.dir
