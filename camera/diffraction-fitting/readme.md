@@ -5,7 +5,7 @@ Affiche une vue de la camera avec la meilleur resolution possible et un viseur e
 
 ## Installation
 ### Dépendances
-```apt-get install libopencv-dev```
+```apt-get install libboost-all-dev libopencv-dev```
 //TODO: Il manque sûrement beaucoup d'information ici (exemple: CMake).
 ### Compilation
 ```bash

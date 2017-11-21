@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <cmath>
+#include <algorithm>
 #include <opencv2/opencv.hpp>
+#include <boost/math/special_functions/bessel.hpp>
 
 void draw_cross(cv::Mat& frame, int width, int height, int hoffset = 0, int voffset = 0)
 {
@@ -21,32 +24,53 @@ void draw_cross(cv::Mat& frame, int width, int height, int hoffset = 0, int voff
     }
 }
 
+double airy_disk(double x, double A, double S, double C)
+{
+    x = (x - C) / S;
+    return std::min(A * pow((2 * boost::math::cyl_bessel_j(1, x)) / x, 2), 255.0);
+}
+
 void plot_roi(cv::Mat& frame, int x, int y, int width)
 {
+    uint8_t pixels[width] = { 0 };
+
     std::ofstream points;
     points.open("points.data", std::ios::trunc);
 
     for (int i = 0; i < width; i++)
     {
-        points << i << "\t" << (int)frame.at<uint8_t>(y, x + i) << std::endl;
+	pixels[i] = frame.at<uint8_t>(y, x + i);
+        points << i << "\t" << (int)pixels[i] << std::endl;
     }
 
     points.close();
 
     FILE *pipe = popen("gnuplot -persist", "w");
-    fprintf(pipe, "set xrange [ 0.00000 : 255.000 ] noreverse nowriteback\n");
-    fprintf(pipe, "set yrange [ 0.00000 : 255.000 ] noreverse nowriteback\n");
-    fprintf(pipe, "plot \'points.data\', 255*((2*besj1((x-125)/6))/((x-125)/6))**2\n");
+    fprintf(pipe, "set xrange [0 : 256] noreverse nowriteback\n");
+    fprintf(pipe, "set yrange [0 : 256] noreverse nowriteback\n");
+    fprintf(pipe, "min(x, y) = (x < y) ? x : y\n");
     fflush(pipe);
+
+    double A = 255;
+    double S = 6;
+    double C = 127;
 
     while (true)
     {
         switch(cv::waitKey())
         {
             case '\n':
-                fprintf(pipe, "plot \'points.data\', 750*((2*besj1((x-125)/6))/((x-125)/6))**2\n");
+            {
+                double error = 0;
+	        for (int i = 0; i < width; i++)
+                {
+                    error += pow(pixels[i] - airy_disk(i, A, S, C), 2);
+                }
+	        std::cout << "error: " << error << "\n";
+
+                fprintf(pipe, "plot \'points.data\', min(%f*((2*besj1((x-%f)/%f))/((x-%f)/%f))**2, 255)\n", A, C, S, C, S);
                 fflush(pipe);
-                break;
+            } break;
             case 27: //ESC
                 pclose(pipe);
                 return;

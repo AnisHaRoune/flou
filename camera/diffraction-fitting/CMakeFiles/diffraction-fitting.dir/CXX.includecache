@@ -13,7 +13,13 @@ iostream
 -
 fstream
 -
+cmath
+-
+algorithm
+-
 opencv2/opencv.hpp
+-
+boost/math/special_functions/bessel.hpp
 -
 
 /usr/local/include/opencv/cxcore.h
