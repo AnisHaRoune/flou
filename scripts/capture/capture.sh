@@ -1,39 +1,39 @@
 #!/usr/bin/env bash
 
-argc=4
+argc=5
 if [[ $# -ne $argc ]]; then
     echo "Illegal number of parameters. Must be $argc."
     exit 1
 fi
 re='^[0-9]+$'
-if ! [[ $1 =~ $re ]] ; then
-    echo "error: $1 is not a positive number" >&2
+if ! [[ $2 =~ $re ]] ; then
+    echo "error: $2 is not a positive number" >&2
     exit 1
 fi
 re='\-?[0-9]+'
-if ! [[ $2 =~ $re ]] ; then
-    echo "error: $2 is not a number" >&2
+if ! [[ $3 =~ $re ]] ; then
+    echo "error: $3 is not a number" >&2
     exit 1
 fi
-if ! [[ $3 != cm || $3 != mm || $3 != um ]] ; then
-    echo "error: $3 must be cm, mm or um" >&2
+if ! [[ $4 != cm || $4 != mm || $4 != um ]] ; then
+    echo "error: $4 must be cm, mm or um" >&2
     exit 1
 fi
 
 mkdir -p captures
-stty -F /dev/ttyUSB0 cs8 9600 ignbrk -brkint -icrnl -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts
-exec 3<> /dev/ttyUSB0
+stty -F /$1 cs8 9600 ignbrk -brkint -icrnl -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts
+exec 3<> $1
 
-for (( i=0; i<$(($1)); i++ ))
+for (( i=0; i<$(($2)); i++ ))
 do
     # Prend une capture d'image
-    path="captures/$4$i.jpg"
+    path="captures/$5$i.jpg"
     fswebcam -q -r 1280x960 --no-banner "$path"
     echo $path
 
     #Deplace la plateforme
-    echo "m$2$3" >&3
-    echo "m$2$3"
+    echo "m$3$4" >&3
+    echo "m$3$4"
 
     #Attend la fin du mouvement
     while read -ru 3 output
