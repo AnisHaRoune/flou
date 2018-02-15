@@ -1,14 +1,19 @@
-# Contrôleur de la plateforme
+﻿# Contrôleur de la plateforme
 
 ## Description
-Cet outil communique avec le pilote de la plateforme grâce au port série GPIO du Raspberry Pi.
+Cet outil communique avec le pilote de la plateforme grâce au port série.
 
-## Configuration du Raspberry Pi
-Le port série du Raspberry Pi doit être configuré d'une certaine manière pour pouvoir communiquer avec le pilote. La [procédure](https://github.com/steven-pigeon/flou/wiki/Communication-s%C3%A9rie) se trouve dans le wiki.
+## Configuration du GPIO Raspberry Pi
+Pour une communication faite avec le GPIO du Raspberry Pi, le port série doit être configuré d'une certaine manière pour communiquer avec le pilote. La [procédure](https://github.com/steven-pigeon/flou/wiki/Communication-s%C3%A9rie) se trouve dans le wiki.
 
 ## Utilisation
+Sous Linux :
 ```bash
 ./platform-controller.sh /dev/ttyUSB0
+```
+Sous Windows:
+```bash
+./platform-controller.sh COM3
 ```
 Une fois l'outils démarré, il suffit de taper les commandes du pilote et le résultat sera affiché en temps réel. CTRL-C termine l'éxecution.
 
