@@ -8,7 +8,7 @@ Le port série du Raspberry Pi doit être configuré d'une certaine manière pou
 
 ## Utilisation
 ```bash
-./platform-controller.sh
+./platform-controller.sh /dev/ttyUSB0
 ```
 Une fois l'outils démarré, il suffit de taper les commandes du pilote et le résultat sera affiché en temps réel. CTRL-C termine l'éxecution.
 
