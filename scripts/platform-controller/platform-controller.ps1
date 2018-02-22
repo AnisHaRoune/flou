@@ -3,39 +3,42 @@ Param
   [string]$COM
 )
 
-$port= new-Object System.IO.Ports.SerialPort $COM, 9600, None, 8, one
-Register-ObjectEvent -InputObject $port -EventName DataReceived -Action {printBuffer} | Out-Null
-
 function global:printBuffer
 {
-    do
-    {
-        $port.Read($buffer, 0, $port.BytesToRead)
-        Write-Host -NoNewline $buffer
-    }
-    while ([string]::IsNullOrEmpty($buffer))
+    Write-Host -NoNewline $port.ReadExisting()
 }
+
+$port = new-Object System.IO.Ports.SerialPort $COM, 9600, None, 8, one
 
 try
 {
-    Write-Host -NoNewline "Ouverture du port $COM... "
+    Write-Host "Ouverture du port $COM..."
+
     $port.Open()
+    Register-ObjectEvent $port DataReceived -Action {printBuffer} | Out-Null
+
     Write-Host "Port $COM ouvert."
 
     Write-Host "Démarrage du contrôle de la plateforme."
     while ($port.IsOpen)
     {
-        $command = Read-Host
-        $port.WriteLine($command)
+        while ([Console]::KeyAvailable)
+        {
+            $key = [System.Console]::ReadKey()
+            $port.Write($key.KeyChar)
+            $port.BaseStream.FlushAsync()
+        }
     }
 }
 catch
 {
-    Write-Host -Foreground Red -Background Black $_.Exception.Message
+    Write-Error $_.Exception.Message
 }
 finally
 {
     Write-Host "Fin du contrôle de la plateforme."
+    Get-EventSubscriber | Unregister-Event
+    Get-Job | Remove-Job -Force
     $port.Close()
     Write-Host "Port $COM fermé."
 }

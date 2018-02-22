@@ -12,7 +12,7 @@ Sous Linux :
 ./platform-controller.sh /dev/ttyUSB0
 ```
 Sous Windows:
-```bash
+```powershell
 ./platform-controller.sh COM3
 ```
 Une fois l'outils démarré, il suffit de taper les commandes du pilote et le résultat sera affiché en temps réel. CTRL-C termine l'éxecution.
