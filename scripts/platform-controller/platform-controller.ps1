@@ -25,8 +25,16 @@ try
         while ([Console]::KeyAvailable)
         {
             $key = [System.Console]::ReadKey()
-            $port.Write($key.KeyChar)
-            $port.BaseStream.FlushAsync()
+            if ($key.Key -eq "Enter")
+            {
+                Write-Host $command
+                $port.WriteLine($command)
+                $command = ""
+            }
+            else
+            {
+                $command += $key.KeyChar
+            }
         }
     }
 }
