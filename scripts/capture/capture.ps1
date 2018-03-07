@@ -1,4 +1,4 @@
-Param
+﻿Param
 (
     [Parameter(Mandatory=$true)]
     [string] $COM,
@@ -11,6 +11,8 @@ Param
     [int] $number_of_captures_by_step = 1,
     [string] $capture_name = "capture"
 )
+
+$directory = Get-Location
 
 if (($unity -ne "cm") -and ($unity -ne "mm") -and ($unity -ne "um"))
 {
@@ -32,7 +34,8 @@ else
         {
             for($j = 0; $j -lt $number_of_captures_by_step; $j++)
             {
-                Start-Process -NoNewWindow -Wait -FilePath ".\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe" -ArgumentList "-f dshow -i video='STC-MBS231U3V(16H6167)' -vf vflip -vframes 1 'captures\$capture_name-$j-$i.jpeg' -y"
+                # Start-Process -NoNewWindow -Wait -FilePath "$directory\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe" -ArgumentList "-f dshow -i video='STC-MBS231U3V(16H6167)' -vframes 1 '$directory\captures\$capture_name-$j-$i.png' -y"
+                Invoke-Expression ".\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe -f dshow -rtbufsize 128M -i video='STC-MBS231U3V(16H6167)' -vf vflip -vframes 1 'captures\$capture_name-$j-$i.png' -y"
             }
 
             $command = "m$distance$unity"
