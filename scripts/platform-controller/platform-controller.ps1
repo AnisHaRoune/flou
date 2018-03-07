@@ -1,6 +1,7 @@
 Param
 (
-  [string]$COM
+    [Parameter(Mandatory=$true)]
+    [string]$COM
 )
 
 function global:printBuffer
@@ -12,14 +13,12 @@ $port = new-Object System.IO.Ports.SerialPort $COM, 9600, None, 8, one
 
 try
 {
-    Write-Host "Ouverture du port $COM..."
-
+    Write-Host "Opening $COM..."
     $port.Open()
     Register-ObjectEvent $port DataReceived -Action {printBuffer} | Out-Null
+    Write-Host "$COM open."
+    Write-Host "Begin platform control."
 
-    Write-Host "Port $COM ouvert."
-
-    Write-Host "Démarrage du contrôle de la plateforme."
     while ($port.IsOpen)
     {
         while ([Console]::KeyAvailable)
@@ -44,9 +43,9 @@ catch
 }
 finally
 {
-    Write-Host "Fin du contrôle de la plateforme."
+    Write-Host "End of platform control."
     Get-EventSubscriber | Unregister-Event
     Get-Job | Remove-Job -Force
     $port.Close()
-    Write-Host "Port $COM fermé."
+    Write-Host "$COM closed."
 }

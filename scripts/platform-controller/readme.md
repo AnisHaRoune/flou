@@ -13,7 +13,7 @@ Sous Linux :
 ```
 Sous Windows:
 ```powershell
-./platform-controller.sh COM3
+.\platform-controller.ps1 COM3
 ```
 Une fois l'outils démarré, il suffit de taper les commandes du pilote et le résultat sera affiché en temps réel. CTRL-C termine l'éxecution.
 
