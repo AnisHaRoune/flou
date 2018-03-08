@@ -9,10 +9,10 @@
     [Parameter(Mandatory=$true)]
     [string] $unity,
     [int] $number_of_captures_by_step = 1,
-    [string] $capture_name = "capture"
+    [string] $capture_name = "capture",
+    [int] $max_error_count = 10,
+    [string] $camera_name = "STC-MBS231U3V(16H6167)"
 )
-
-$directory = Get-Location
 
 if (($unity -ne "cm") -and ($unity -ne "mm") -and ($unity -ne "um"))
 {
@@ -34,8 +34,28 @@ else
         {
             for($j = 0; $j -lt $number_of_captures_by_step; $j++)
             {
-                # Start-Process -NoNewWindow -Wait -FilePath "$directory\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe" -ArgumentList "-f dshow -i video='STC-MBS231U3V(16H6167)' -vframes 1 '$directory\captures\$capture_name-$j-$i.png' -y"
-                Invoke-Expression ".\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe -f dshow -rtbufsize 128M -i video='STC-MBS231U3V(16H6167)' -vf vflip -vframes 1 'captures\$capture_name-$j-$i.png' -y"
+                Write-Host "ffmpeg capture..."
+                $filepath = "captures\$capture_name-$j-$i.png"
+                $result = .\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe -loglevel error -f dshow -rtbufsize 128M -i video="$camera_name" -vf vflip -vframes 1 "$filepath" -y 2>&1
+                $error = $result -match "error"
+                if ($error)
+                {
+                    Write-Warning "$result"
+                    $j--
+                    $error_count++
+
+                    if ($error_count -ge $max_error_count)
+                    {
+                        throw "Too many ffmpeg error ($error_count), aborting."
+                    }
+
+                    Start-Sleep -Seconds 1
+                }
+                else
+                {
+                    Write-Host $filepath
+                    $error_count = 0
+                }
             }
 
             $command = "m$distance$unity"
