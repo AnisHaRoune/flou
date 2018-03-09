@@ -35,7 +35,8 @@ else
             for($j = 0; $j -lt $number_of_captures_by_step; $j++)
             {
                 Write-Host "ffmpeg capture..."
-                $filepath = "captures\$capture_name-$j-$i.png"
+                $distance_index = $distance * $i
+                $filepath = "captures\$capture_name-$distance_index$unity-$j.png"
                 $result = .\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe -loglevel error -f dshow -rtbufsize 128M -i video="$camera_name" -vf vflip -vframes 1 "$filepath" -y 2>&1
                 $error = $result -match "error"
                 if ($error)
