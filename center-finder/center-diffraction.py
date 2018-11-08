@@ -30,7 +30,7 @@ for j in range(0, image.shape[1]):
     for i in range(0, image.shape[0]):
         X[i + (j * image.shape[0])] = (j, i)
 
-popt, pcov = curve_fit(diffraction2D, X, Y, p0 = (image.shape[0] / 2, image.shape[1] / 2, 0, 511, 1, 0, 0, 1), bounds=([0, 0, 0, 0.1, -2, -2, -2, -2], [image.shape[0], image.shape[1], np.inf, np.inf, 2, 2, 2, 2]))
+popt, pcov = curve_fit(diffraction2D, X, Y, p0 = (193.54718714, 148.01050168, 0, 511, 1, 0, 0, 1), bounds=([0, 0, 0, 0.1, -2, -2, -2, -2], [image.shape[0], image.shape[1], np.inf, np.inf, 2, 2, 2, 2]))
 
 print(popt)
 diffraction = diffraction2D(X, popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7]).reshape(image.shape)
