@@ -15,6 +15,7 @@ class METHODS(Enum):
     DIFFRACTION = 'diffraction'
     SINC = 'sinc'
     INVERTED_SQUARE = 'invsquare'
+    EULER = 'euler'
 
 
 class THRESHOLD_METHODS(Enum):
@@ -81,6 +82,13 @@ def center_finder_inverted_square(image, z0, debug=False):
     p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
     bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
     return center_finder_curve_fitting(image, inverted_square_equation_transformed, p0, bounds, debug)
+
+
+def center_finder_euler(image, z0, debug=False):
+    y0, x0 = center_finder_mean(image, z0, False)
+    p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
+    bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
+    return center_finder_curve_fitting(image, euler_equation_transformed, p0, bounds, debug)
 
 
 def center_finder_mean(image, z0, debug=False):
@@ -174,12 +182,17 @@ def inverted_square_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
     y = 1 / ((y ** 2) + 1)
     return np.clip((sz * y) + z0, 0, 255)
 
+def euler_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
+    y = transform(x, x0, y0, a, b, c, d)
+    y = np.exp(-np.exp(1) * (y ** 2))
+    return np.clip((sz * y) + z0, 0, 255)
+
 
 def main():
     parser = ArgumentParser()
     parser.add_argument('filepath')
     parser.add_argument('method',
-                        choices=[METHODS.MEAN.value, METHODS.CIRCLE.value, METHODS.DIFFRACTION.value, METHODS.INVERTED_SQUARE.value])
+                        choices=[METHODS.MEAN.value, METHODS.CIRCLE.value, METHODS.DIFFRACTION.value, METHODS.INVERTED_SQUARE.value, METHODS.EULER.value])
     parser.add_argument('-threshold_method',
                         choices=[THRESHOLD_METHODS.MIN.value, THRESHOLD_METHODS.MEAN.value, THRESHOLD_METHODS.ABS.value,
                                  THRESHOLD_METHODS.SQUARE.value, THRESHOLD_METHODS.LOG.value])
@@ -198,6 +211,8 @@ def main():
         x, y = center_finder_circle(image, z0, args.debug)
     elif args.method == METHODS.INVERTED_SQUARE.value:
         x, y = center_finder_inverted_square(image, z0, args.debug)
+    elif args.method == METHODS.EULER.value:
+        x, y = center_finder_euler(image, z0, args.debug)
 
     print(x, y)
 

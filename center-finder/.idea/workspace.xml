@@ -55,13 +55,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="5" />
-          <entry key="py" value="2748" />
+          <entry key="py" value="2896" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="2748" />
+          <entry key="Python" value="2896" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -81,15 +81,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/center-finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="181" column="131" selection-start-line="181" selection-start-column="131" selection-end-line="181" selection-end-column="131" />
+            <state relative-caret-position="75">
+              <caret line="194" column="152" lean-forward="true" selection-start-line="194" selection-start-column="152" selection-end-line="194" selection-end-column="152" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1541796518122" expanded="true" signature="266:375" ph="..." />
-                <marker date="1541796518122" expanded="true" signature="570:1476" ph="..." />
-                <marker date="1541796518122" expanded="true" signature="3142:4353" ph="..." />
-                <marker date="1541796518122" expanded="true" signature="5010:5013" ph="..." />
-                <marker date="1541796518122" expanded="true" signature="5024:6169" ph="..." />
+                <marker date="1541796875785" expanded="true" signature="266:395" ph="..." />
+                <marker date="1541796875785" expanded="true" signature="590:1496" ph="..." />
+                <marker date="1541796875785" expanded="true" signature="3517:4728" ph="..." />
+                <marker date="1541796875785" expanded="true" signature="5570:5573" ph="..." />
+                <marker date="1541796875785" expanded="true" signature="5584:6874" ph="..." />
               </folding>
             </state>
           </provider>
@@ -210,7 +210,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/center-finder.py" />
-      <option name="PARAMETERS" value="test-data/laser.bmp invsquare -threshold_method log --debug" />
+      <option name="PARAMETERS" value="test-data/laser-small.bmp euler -threshold_method log --debug" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -317,15 +317,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/center-finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="181" column="131" selection-start-line="181" selection-start-column="131" selection-end-line="181" selection-end-column="131" />
+        <state relative-caret-position="75">
+          <caret line="194" column="152" lean-forward="true" selection-start-line="194" selection-start-column="152" selection-end-line="194" selection-end-column="152" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1541796518122" expanded="true" signature="266:375" ph="..." />
-            <marker date="1541796518122" expanded="true" signature="570:1476" ph="..." />
-            <marker date="1541796518122" expanded="true" signature="3142:4353" ph="..." />
-            <marker date="1541796518122" expanded="true" signature="5010:5013" ph="..." />
-            <marker date="1541796518122" expanded="true" signature="5024:6169" ph="..." />
+            <marker date="1541796875785" expanded="true" signature="266:395" ph="..." />
+            <marker date="1541796875785" expanded="true" signature="590:1496" ph="..." />
+            <marker date="1541796875785" expanded="true" signature="3517:4728" ph="..." />
+            <marker date="1541796875785" expanded="true" signature="5570:5573" ph="..." />
+            <marker date="1541796875785" expanded="true" signature="5584:6874" ph="..." />
           </folding>
         </state>
       </provider>
