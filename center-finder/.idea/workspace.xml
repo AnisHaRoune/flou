@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e5d00981-a31a-4752-afb5-3861a80dd6f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/center-diffraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/center-diffraction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-image.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-image.bmp" afterDir="false" />
-    </list>
+    <list default="true" id="e5d00981-a31a-4752-afb5-3861a80dd6f9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
