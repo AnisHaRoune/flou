@@ -26,7 +26,7 @@ exec 3<> $1
 
 for (( i=0; i<$(($2)); i++ ))
 do
-    # Prend une capture d'image
+    # Prend une capture d'image (TODO : meilleure convention de nommage, les fichiers sont dur a trier)
     path="captures/$5$i.jpg"
     fswebcam -q -r 1280x960 --no-banner "$path"
     echo $path
