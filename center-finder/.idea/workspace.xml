@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5d00981-a31a-4752-afb5-3861a80dd6f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/center-finder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/center-finder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/center-diffraction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center-average.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/center-finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/center-finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/laser-small.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/laser.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/laser2.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/laser3.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/laser4.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/test-image.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/centroid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser-small.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-data/laser-small.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-data/laser.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser2.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-data/laser2.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser3.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-data/laser3.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser4.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-data/laser4.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-image.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/test-data/test-image.bmp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,12 +63,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="782" />
+          <entry key="dummy" value="5" />
+          <entry key="py" value="1343" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="782" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="Python" value="1343" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -87,46 +88,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/center-average.py">
+        <entry file="file://$PROJECT_DIR$/center-finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="630">
+              <caret line="164" column="13" lean-forward="true" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <marker date="1541788236988" expanded="true" signature="2014:2614" ph="..." />
+                <marker date="1541788236988" expanded="true" signature="4527:5321" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/center-finder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <marker date="1541785247859" expanded="true" signature="1695:3471" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/centroid.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threshold.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+            <state relative-caret-position="375">
+              <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="21" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -242,7 +221,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/center-finder.py" />
-      <option name="PARAMETERS" value="laser.bmp diffraction -sz 511 --debug" />
+      <option name="PARAMETERS" value="test-data/laser4.bmp mean -threshold_method log -sz 511 --debug" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -282,7 +261,7 @@
       <window_info anchor="bottom" id="Find" order="4" weight="0.32902467" />
       <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49925596" visible="true" weight="0.32902467" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.39952996" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -319,8 +298,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/center-average.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        <state relative-caret-position="270">
+          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -329,17 +308,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/centroid.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threshold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="7" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -348,11 +318,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/center-finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+        <state relative-caret-position="630">
+          <caret line="164" column="13" lean-forward="true" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1541785247859" expanded="true" signature="1695:3471" ph="..." />
+            <marker date="1541788236988" expanded="true" signature="2014:2614" ph="..." />
+            <marker date="1541788236988" expanded="true" signature="4527:5321" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
