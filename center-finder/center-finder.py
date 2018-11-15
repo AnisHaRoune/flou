@@ -14,7 +14,7 @@ class METHODS(Enum):
     CIRCLE = 'circle'
     DIFFRACTION = 'diffraction'
     SINC = 'sinc'
-    INVERTED_SQUARE = 'invsquare'
+    INVERTED_SQUARE = 'isquare'
     EULER = 'euler'
 
 
@@ -37,7 +37,8 @@ def center_finder_curve_fitting(image, equation, p0, bounds, debug=False):
 
     if debug:
         print(popt)
-        result = equation(X, popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7]).reshape(image.shape)
+        result = equation(X, popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7]).reshape(
+            image.shape)
 
         plt.subplot(1, 3, 1)
         plt.imshow(image)
@@ -59,42 +60,42 @@ def center_finder_curve_fitting(image, equation, p0, bounds, debug=False):
         plt.tight_layout()
         plt.show()
 
-    return popt[0], popt[1]
+    return popt[1], popt[0]
 
 
-def center_finder_diffraction(image, z0, debug=False):
-    y0, x0 = center_finder_centroid(image, z0, False)
-    p0 = (x0, y0, z0, 2 ** 10, 0.5, 0, 0, 0.5)
+def center_finder_diffraction(image, debug=False):
+    x0, y0 = center_finder_centroid(image, False)
+    p0 = (x0, y0, 0, 2 ** 10, 0.5, 0, 0, 0.5)
     bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.5, 0.5, 1])
     return center_finder_curve_fitting(image, diffraction_equation_transformed, p0, bounds, debug)
 
 
-def center_finder_circle(image, z0, debug=False):
-    y0, x0 = center_finder_centroid(image, z0, False)
-    p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
+def center_finder_circle(image, debug=False):
+    x0, y0 = center_finder_centroid(image, False)
+    p0 = (x0, y0, image.max(), 1, 0.5, 0, 0, 0.5)
     bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.5, 0.5, 1])
     return center_finder_curve_fitting(image, circle_equation_transformed, p0, bounds, debug)
 
 
-def center_finder_inverted_square(image, z0, debug=False):
-    y0, x0 = center_finder_centroid(image, z0, False)
-    p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
+def center_finder_inverted_square(image, debug=False):
+    x0, y0 = center_finder_centroid(image, False)
+    p0 = (x0, y0, 0, 1, 0.5, 0, 0, 0.5)
     bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
     return center_finder_curve_fitting(image, inverted_square_equation_transformed, p0, bounds, debug)
 
 
-def center_finder_euler(image, z0, debug=False):
-    y0, x0 = center_finder_centroid(image, z0, False)
-    p0 = (x0, y0, z0, 1, 1, 0, 0, 1)
+def center_finder_euler(image, debug=False):
+    x0, y0 = center_finder_centroid(image, False)
+    p0 = (x0, y0, 0, image.max(), 1, 0, 0, 1)
     bounds = ([0, 0, 0, 1, 0.01, 0, 0, 0.01], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
     return center_finder_curve_fitting(image, euler_equation_transformed, p0, bounds, debug)
 
 
-def center_finder_centroid(image, z0, debug=False):
+def center_finder_centroid(image, debug=False):
     X = np.array([0, 0], dtype=np.float)
     Y = 0
     for (x, y), value in np.ndenumerate(image):
-        pixel = max(image[x, y] - z0, 0)
+        pixel = max(image[x, y], 0)
         X += np.array([x, y]) * pixel
         Y += pixel
     center = X / Y
@@ -111,7 +112,7 @@ def center_finder_centroid(image, z0, debug=False):
         plt.imshow(image)
         plt.show()
 
-    return center[0], center[1]
+    return center[1], center[0]
 
 
 def threshold(image, args):
@@ -154,9 +155,10 @@ def square_threshold(x):
 
 
 def log_threshold(x):
+    x = x.astype(np.float64)
     values = np.empty(256)
     for i in range(values.size):
-        values[i] = np.log(((x - i) ** 2) + 1).sum(dtype=np.float64) / x.size
+        values[i] = np.sum(np.log(((x - i) ** 2) + 1)) / x.size
     return np.min(values)
 
 
@@ -188,34 +190,98 @@ def euler_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
     return np.clip((sz * y) + z0, 0, 255)
 
 
+def clean_image(args, image):
+    y, x = center_finder_centroid(np.clip(image.astype(np.int16) - 15, 0, 255).astype(np.uint8), False)
+    x = int(x)
+    y = int(y)
+    c = 100
+    x0 = max(x - c, 0)
+    x1 = min(x + c, image.shape[0])
+    y0 = max(y - c, 0)
+    y1 = min(y + c, image.shape[1])
+
+    image = image[x0:x1, y0:y1]
+    z0 = threshold(image, args)
+    image = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
+
+    return image, y0, x0
+
+    # https://stackoverflow.com/a/46146544
+    '''
+    z0 = threshold(image, args)
+    mask = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
+
+    _, mask = cv2.threshold(mask, 0, 255, cv2.THRESH_BINARY)
+    image_comp = cv2.bitwise_not(mask)
+
+    kernel1 = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]], np.uint8)
+    kernel2 = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]], np.uint8)
+    hitormiss1 = cv2.morphologyEx(mask, cv2.MORPH_ERODE, kernel1)
+    hitormiss2 = cv2.morphologyEx(image_comp, cv2.MORPH_ERODE, kernel2)
+    hitormiss = cv2.bitwise_and(hitormiss1, hitormiss2)
+    hitormiss_comp = cv2.bitwise_not(hitormiss)
+    mask = cv2.bitwise_and(mask, mask, mask=hitormiss_comp)
+
+    mask, contours, _ = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    contour = max(contours, key=cv2.contourArea)
+    x, y, w, h = cv2.boundingRect(contour)
+    print(x, y)
+    c = 100
+    x0 = max(x - c, 0)
+    x1 = min(x + c, image.shape[1])
+    y0 = max(y - c, 0)
+    y1 = min(y + c, image.shape[0])
+    image = image[y0:y1, x0:x1]
+
+    z0 = threshold(image, args)
+    image = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
+
+    return image, x0, y0
+    '''
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument('filepath')
     parser.add_argument('method',
                         choices=[METHODS.CENTROID.value, METHODS.CIRCLE.value, METHODS.DIFFRACTION.value,
                                  METHODS.INVERTED_SQUARE.value, METHODS.EULER.value])
-    parser.add_argument('-threshold_method',
+    parser.add_argument('--threshold_method', '-t',
                         choices=[ThresholdMethods.MIN.value, ThresholdMethods.MEAN.value, ThresholdMethods.ABS.value,
                                  ThresholdMethods.SQUARE.value, ThresholdMethods.LOG.value])
-    parser.add_argument('--debug', action="store_true")
+    parser.add_argument('--debug', '-d', action="store_true")
     args = parser.parse_args()
 
     image_path = args.filepath
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    z0 = threshold(image, args)
+    cropped_image, x0, y0 = clean_image(args, image)
 
     if args.method == METHODS.CENTROID.value:
-        x, y = center_finder_centroid(image, z0, args.debug)
+        x, y = center_finder_centroid(cropped_image, args.debug)
     elif args.method == METHODS.DIFFRACTION.value:
-        x, y = center_finder_diffraction(image, z0, args.debug)
+        x, y = center_finder_diffraction(cropped_image, args.debug)
     elif args.method == METHODS.CIRCLE.value:
-        x, y = center_finder_circle(image, z0, args.debug)
+        x, y = center_finder_circle(cropped_image, args.debug)
     elif args.method == METHODS.INVERTED_SQUARE.value:
-        x, y = center_finder_inverted_square(image, z0, args.debug)
+        x, y = center_finder_inverted_square(cropped_image, args.debug)
     elif args.method == METHODS.EULER.value:
-        x, y = center_finder_euler(image, z0, args.debug)
+        x, y = center_finder_euler(cropped_image, args.debug)
+
+    x += x0
+    y += y0
 
     print("{},{}".format(x, y))
+
+    if args.debug:
+        x = int(round(x))
+        y = int(round(y))
+        for i in range(image.shape[1]):
+            image[y, i] = 127
+        for i in range(image.shape[0]):
+            image[i, x] = 127
+
+        plt.imshow(image)
+        plt.show()
 
 
 if __name__ == "__main__":
