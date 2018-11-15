@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5d00981-a31a-4752-afb5-3861a80dd6f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/center-finder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/center-finder.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/center-finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/center-finder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,21 +17,24 @@
     <session id="-848991522">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="25" />
-          <entry key="py" value="1575" />
+          <entry key="dummy" value="56" />
+          <entry key="py" value="1659" />
           <entry key="sinc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="25" />
-          <entry key="Python" value="1576" />
+          <entry key="PLAIN_TEXT" value="56" />
+          <entry key="Python" value="1660" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -81,15 +87,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/center-finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="194" column="152" lean-forward="true" selection-start-line="194" selection-start-column="152" selection-end-line="194" selection-end-column="152" />
+            <state relative-caret-position="188">
+              <caret line="88" column="101" selection-start-line="88" selection-start-column="101" selection-end-line="88" selection-end-column="101" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1541796875785" expanded="true" signature="266:395" ph="..." />
-                <marker date="1541796875785" expanded="true" signature="590:1496" ph="..." />
-                <marker date="1541796875785" expanded="true" signature="3517:4728" ph="..." />
-                <marker date="1541796875785" expanded="true" signature="5570:5573" ph="..." />
-                <marker date="1541796875785" expanded="true" signature="5584:6874" ph="..." />
               </folding>
             </state>
           </provider>
@@ -140,6 +141,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,7 +153,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -175,8 +176,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.center-finder">
-    <configuration name="center-diffraction" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager">
+    <configuration name="center-finder" type="PythonConfigurationType" factoryName="Python">
       <module name="center-finder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -188,29 +189,8 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/center-diffraction.py" />
-      <option name="PARAMETERS" value="laser4.bmp debug" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="center-finder" type="PythonConfigurationType" factoryName="Python">
-      <module name="center-finder" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/center-finder.py" />
-      <option name="PARAMETERS" value="test-data/laser-small.bmp euler -threshold_method log --debug" />
+      <option name="PARAMETERS" value="test-data/laser.bmp euler -threshold_method log --debug" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -218,10 +198,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Python.center-diffraction" />
-      <item itemvalue="Python.center-finder" />
-    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -237,19 +213,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="979" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24290393" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24255952" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50074404" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Python Console" order="2" />
       <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.32902467" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.32786885" />
       <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49925596" visible="true" weight="0.32902467" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49925596" visible="true" weight="0.32786885" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39952996" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -268,64 +244,17 @@
     <entry file="file://$PROJECT_DIR$/test-data/laser4.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file:///usr/lib/python3.5/argparse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="1604" column="8" selection-start-line="1604" selection-start-column="8" selection-end-line="1604" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/center-diffraction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="23" lean-forward="true" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/center-average.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/centroid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threshold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/lib/python3.5/argparse.py" />
+    <entry file="file://$PROJECT_DIR$/center-diffraction.py" />
+    <entry file="file://$PROJECT_DIR$/center-average.py" />
+    <entry file="file://$PROJECT_DIR$/centroid.py" />
+    <entry file="file://$PROJECT_DIR$/threshold.py" />
     <entry file="file://$PROJECT_DIR$/center-finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="194" column="152" lean-forward="true" selection-start-line="194" selection-start-column="152" selection-end-line="194" selection-end-column="152" />
+        <state relative-caret-position="188">
+          <caret line="88" column="101" selection-start-line="88" selection-start-column="101" selection-end-line="88" selection-end-column="101" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1541796875785" expanded="true" signature="266:395" ph="..." />
-            <marker date="1541796875785" expanded="true" signature="590:1496" ph="..." />
-            <marker date="1541796875785" expanded="true" signature="3517:4728" ph="..." />
-            <marker date="1541796875785" expanded="true" signature="5570:5573" ph="..." />
-            <marker date="1541796875785" expanded="true" signature="5584:6874" ph="..." />
           </folding>
         </state>
       </provider>

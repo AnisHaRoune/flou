@@ -10,7 +10,7 @@ np.set_printoptions(suppress=True)
 
 
 class METHODS(Enum):
-    MEAN = 'mean'
+    CENTROID = 'centroid'
     CIRCLE = 'circle'
     DIFFRACTION = 'diffraction'
     SINC = 'sinc'
@@ -18,7 +18,7 @@ class METHODS(Enum):
     EULER = 'euler'
 
 
-class THRESHOLD_METHODS(Enum):
+class ThresholdMethods(Enum):
     MIN = 'min'
     MEAN = 'mean'
     ABS = 'abs'
@@ -37,8 +37,7 @@ def center_finder_curve_fitting(image, equation, p0, bounds, debug=False):
 
     if debug:
         print(popt)
-        result = equation(X, popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7]).reshape(
-            image.shape)
+        result = equation(X, popt[0], popt[1], popt[2], popt[3], popt[4], popt[5], popt[6], popt[7]).reshape(image.shape)
 
         plt.subplot(1, 3, 1)
         plt.imshow(image)
@@ -64,34 +63,34 @@ def center_finder_curve_fitting(image, equation, p0, bounds, debug=False):
 
 
 def center_finder_diffraction(image, z0, debug=False):
-    y0, x0 = center_finder_mean(image, z0, False)
+    y0, x0 = center_finder_centroid(image, z0, False)
     p0 = (x0, y0, z0, 2 ** 10, 0.5, 0, 0, 0.5)
-    bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
+    bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.5, 0.5, 1])
     return center_finder_curve_fitting(image, diffraction_equation_transformed, p0, bounds, debug)
 
 
 def center_finder_circle(image, z0, debug=False):
-    y0, x0 = center_finder_mean(image, z0, False)
+    y0, x0 = center_finder_centroid(image, z0, False)
     p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
-    bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
+    bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.5, 0.5, 1])
     return center_finder_curve_fitting(image, circle_equation_transformed, p0, bounds, debug)
 
 
 def center_finder_inverted_square(image, z0, debug=False):
-    y0, x0 = center_finder_mean(image, z0, False)
+    y0, x0 = center_finder_centroid(image, z0, False)
     p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
     bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
     return center_finder_curve_fitting(image, inverted_square_equation_transformed, p0, bounds, debug)
 
 
 def center_finder_euler(image, z0, debug=False):
-    y0, x0 = center_finder_mean(image, z0, False)
-    p0 = (x0, y0, z0, 1, 0.5, 0, 0, 0.5)
-    bounds = ([0, 0, 0, 1, 0.45, 0, 0, 0.45], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
+    y0, x0 = center_finder_centroid(image, z0, False)
+    p0 = (x0, y0, z0, 1, 1, 0, 0, 1)
+    bounds = ([0, 0, 0, 1, 0.01, 0, 0, 0.01], [image.shape[0] - 1, image.shape[1] - 1, np.inf, np.inf, 1, 0.1, 0.1, 1])
     return center_finder_curve_fitting(image, euler_equation_transformed, p0, bounds, debug)
 
 
-def center_finder_mean(image, z0, debug=False):
+def center_finder_centroid(image, z0, debug=False):
     X = np.array([0, 0], dtype=np.float)
     Y = 0
     for (x, y), value in np.ndenumerate(image):
@@ -116,15 +115,15 @@ def center_finder_mean(image, z0, debug=False):
 
 
 def threshold(image, args):
-    if args.threshold_method == THRESHOLD_METHODS.MIN.value:
+    if args.threshold_method == ThresholdMethods.MIN.value:
         return min_threshold(image)
-    elif args.threshold_method == THRESHOLD_METHODS.MEAN.value:
+    elif args.threshold_method == ThresholdMethods.MEAN.value:
         return mean_threshold(image)
-    elif args.threshold_method == THRESHOLD_METHODS.SQUARE.value:
+    elif args.threshold_method == ThresholdMethods.SQUARE.value:
         return square_threshold(image)
-    elif args.threshold_method == THRESHOLD_METHODS.ABS.value:
+    elif args.threshold_method == ThresholdMethods.ABS.value:
         return abs_threshold(image)
-    elif args.threshold_method == THRESHOLD_METHODS.LOG.value:
+    elif args.threshold_method == ThresholdMethods.LOG.value:
         return log_threshold(image)
     elif args.z0 is not None:
         return args.z0
@@ -182,6 +181,7 @@ def inverted_square_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
     y = 1 / ((y ** 2) + 1)
     return np.clip((sz * y) + z0, 0, 255)
 
+
 def euler_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
     y = transform(x, x0, y0, a, b, c, d)
     y = np.exp(-np.exp(1) * (y ** 2))
@@ -192,10 +192,11 @@ def main():
     parser = ArgumentParser()
     parser.add_argument('filepath')
     parser.add_argument('method',
-                        choices=[METHODS.MEAN.value, METHODS.CIRCLE.value, METHODS.DIFFRACTION.value, METHODS.INVERTED_SQUARE.value, METHODS.EULER.value])
+                        choices=[METHODS.CENTROID.value, METHODS.CIRCLE.value, METHODS.DIFFRACTION.value,
+                                 METHODS.INVERTED_SQUARE.value, METHODS.EULER.value])
     parser.add_argument('-threshold_method',
-                        choices=[THRESHOLD_METHODS.MIN.value, THRESHOLD_METHODS.MEAN.value, THRESHOLD_METHODS.ABS.value,
-                                 THRESHOLD_METHODS.SQUARE.value, THRESHOLD_METHODS.LOG.value])
+                        choices=[ThresholdMethods.MIN.value, ThresholdMethods.MEAN.value, ThresholdMethods.ABS.value,
+                                 ThresholdMethods.SQUARE.value, ThresholdMethods.LOG.value])
     parser.add_argument('--debug', action="store_true")
     args = parser.parse_args()
 
@@ -203,8 +204,8 @@ def main():
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     z0 = threshold(image, args)
 
-    if args.method == METHODS.MEAN.value:
-        x, y = center_finder_mean(image, z0, args.debug)
+    if args.method == METHODS.CENTROID.value:
+        x, y = center_finder_centroid(image, z0, args.debug)
     elif args.method == METHODS.DIFFRACTION.value:
         x, y = center_finder_diffraction(image, z0, args.debug)
     elif args.method == METHODS.CIRCLE.value:
