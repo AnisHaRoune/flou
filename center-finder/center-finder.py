@@ -215,7 +215,7 @@ def main():
     elif args.method == METHODS.EULER.value:
         x, y = center_finder_euler(image, z0, args.debug)
 
-    print(x, y)
+    print("{},{}".format(x, y))
 
 
 if __name__ == "__main__":
