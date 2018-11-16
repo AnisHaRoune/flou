@@ -208,7 +208,7 @@ def clean_image(args, image):
     if args.debug:
         print(z0)
 
-    return image, y0, x0, y1, x1
+    return image, x0, y0, x1, y1
 
     # https://stackoverflow.com/a/46146544
     '''
@@ -277,12 +277,13 @@ def main():
     print("{},{}".format(x, y))
 
     if args.debug:
+        print(x0, y0, x1, y1)
         x = int(round(x))
         y = int(round(y))
         for i in range(image.shape[1]):
-            image[y, i] = 127
+            image[x, i] = 127
         for i in range(image.shape[0]):
-            image[i, x] = 127
+            image[i, y] = 127
 
         plt.imshow(image)
         plt.show()
