@@ -144,14 +144,14 @@ def abs_threshold(x):
     values = np.empty(256)
     for i in range(values.size):
         values[i] = np.sum(abs(x - i)) / x.size
-    return np.min(values)
+    return np.argmin(values)
 
 
 def square_threshold(x):
     values = np.empty(256)
     for i in range(values.size):
         values[i] = np.sum((x - i) ** 2) / x.size
-    return np.min(values)
+    return np.argmin(values)
 
 
 def log_threshold(x):
@@ -159,7 +159,7 @@ def log_threshold(x):
     values = np.empty(256)
     for i in range(values.size):
         values[i] = np.sum(np.log(((x - i) ** 2) + 1)) / x.size
-    return np.min(values)
+    return np.argmin(values)
 
 
 def transform(x, x0, y0, a, b, c, d):
@@ -191,10 +191,11 @@ def euler_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
 
 
 def clean_image(args, image):
-    y, x = center_finder_centroid(np.clip(image.astype(np.int16) - 15, 0, 255).astype(np.uint8), False)
+    z0 = threshold(image, args)
+    y, x = center_finder_centroid(np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8), False)
     x = int(x)
     y = int(y)
-    c = 100
+    c = 50
     x0 = max(x - c, 0)
     x1 = min(x + c, image.shape[0])
     y0 = max(y - c, 0)
@@ -204,7 +205,10 @@ def clean_image(args, image):
     z0 = threshold(image, args)
     image = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
 
-    return image, y0, x0
+    if args.debug:
+        print(z0)
+
+    return image, y0, x0, y1, x1
 
     # https://stackoverflow.com/a/46146544
     '''
@@ -254,7 +258,7 @@ def main():
 
     image_path = args.filepath
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    cropped_image, x0, y0 = clean_image(args, image)
+    cropped_image, x0, y0, x1, y1 = clean_image(args, image)
 
     if args.method == METHODS.CENTROID.value:
         x, y = center_finder_centroid(cropped_image, args.debug)
