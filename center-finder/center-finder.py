@@ -47,13 +47,7 @@ def center_finder_curve_fitting(image, equation, p0, bounds, debug=False):
         plt.imshow(result)
 
         plt.subplot(1, 3, 3)
-        x = int(round(popt[0]))
-        y = int(round(popt[1]))
-        result[y, x] = 0
-        result[y - 1, x] = 0
-        result[y + 1, x] = 0
-        result[y, x - 1] = 0
-        result[y, x + 1] = 0
+        draw_crosshair(image, popt[0], popt[1])
         plt.imshow(image)
         plt.imshow(result, cmap=plt.cm.gray, alpha=0.5)
 
@@ -92,19 +86,12 @@ def center_finder_euler(image, debug=False):
 
 
 def center_finder_centroid(image, debug=False):
-    m = cv2.moments(image)
-    x = m["m10"] / m["m00"]
-    y = m["m01"] / m["m00"]
+    M = cv2.moments(image)
+    x = M['m10'] / M['m00']
+    y = M['m01'] / M['m00']
 
     if debug:
-        cx = int(round(x))
-        cy = int(round(y))
-        image[cy, cx] = 127
-        image[cy - 1, cx] = 127
-        image[cy + 1, cx] = 127
-        image[cy, cx - 1] = 127
-        image[cy, cx + 1] = 127
-
+        draw_crosshair(image, x, y)
         plt.imshow(image)
         plt.show()
 
@@ -240,6 +227,15 @@ def clean_image(args, image):
     '''
 
 
+def draw_crosshair(image, x, y):
+    cx = int(round(x))
+    cy = int(round(y))
+    for i in range(image.shape[1]):
+        image[cy, i] = 127
+    for i in range(image.shape[0]):
+        image[i, cx] = 127
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument('filepath')
@@ -273,13 +269,7 @@ def main():
     print("{},{}".format(x, y))
 
     if args.debug:
-        x = int(round(x))
-        y = int(round(y))
-        for i in range(image.shape[1]):
-            image[y, i] = 127
-        for i in range(image.shape[0]):
-            image[i, x] = 127
-
+        draw_crosshair(image, x, y)
         plt.imshow(image)
         plt.show()
 
