@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5d00981-a31a-4752-afb5-3861a80dd6f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.center-finder-plotter.sh.swp" beforeDir="false" afterPath="$PROJECT_DIR$/.center-finder-plotter.sh.swp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.~lock.center-finder_centroid_square.ods#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/center-finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/center-finder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,13 +64,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="5" />
-          <entry key="py" value="3710" />
+          <entry key="py" value="3752" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="3710" />
+          <entry key="Python" value="3752" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -90,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/center-finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="270" column="18" selection-start-line="270" selection-start-column="18" selection-end-line="270" selection-end-column="18" />
+            <state relative-caret-position="255">
+              <caret line="92" column="30" lean-forward="true" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#6134#7281#1" />
@@ -267,8 +267,8 @@
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/scipy/optimize/minpack.py" />
     <entry file="file://$PROJECT_DIR$/center-finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="270" column="18" selection-start-line="270" selection-start-column="18" selection-end-line="270" selection-end-column="18" />
+        <state relative-caret-position="255">
+          <caret line="92" column="30" lean-forward="true" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#6134#7281#1" />

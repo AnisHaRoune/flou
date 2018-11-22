@@ -87,8 +87,13 @@ def center_finder_euler(image, debug=False):
 
 def center_finder_centroid(image, debug=False):
     M = cv2.moments(image)
-    x = M['m10'] / M['m00']
-    y = M['m01'] / M['m00']
+
+    if M['m00'] == 0:
+        x = image.shape[1] / 2
+        y = image.shape[0] / 2
+    else:
+        x = M['m10'] / M['m00']
+        y = M['m01'] / M['m00']
 
     if debug:
         draw_crosshair(image, x, y)
