@@ -46,20 +46,14 @@ def center_finder_curve_fitting(image, equation, p0, bounds, debug=False):
         plt.imshow(result)
 
         plt.subplot(1, 3, 3)
-        x = int(round(popt[0]))
-        y = int(round(popt[1]))
-        result[y, x] = 0
-        result[y - 1, x] = 0
-        result[y + 1, x] = 0
-        result[y, x - 1] = 0
-        result[y, x + 1] = 0
+        draw_crosshair(image, popt[0], popt[1])
         plt.imshow(image)
         plt.imshow(result, cmap=plt.cm.gray, alpha=0.5)
 
         plt.tight_layout()
         plt.show()
 
-    return popt[1], popt[0]
+    return popt[0], popt[1]
 
 
 def center_finder_diffraction(image, debug=False):
@@ -91,27 +85,21 @@ def center_finder_euler(image, debug=False):
 
 
 def center_finder_centroid(image, debug=False):
-    X = np.array([0, 0], dtype=np.float)
-    Y = 0
-    for (x, y), value in np.ndenumerate(image):
-        pixel = max(image[x, y], 0)
-        X += np.array([x, y]) * pixel
-        Y += pixel
-    center = X / Y
+    M = cv2.moments(image)
+
+    if M['m00'] == 0:
+        x = image.shape[1] / 2
+        y = image.shape[0] / 2
+    else:
+        x = M['m10'] / M['m00']
+        y = M['m01'] / M['m00']
 
     if debug:
-        x = int(round(center[0]))
-        y = int(round(center[1]))
-        image[x, y] = 0
-        image[x - 1, y] = 0
-        image[x + 1, y] = 0
-        image[x, y - 1] = 0
-        image[x, y + 1] = 0
-
+        draw_crosshair(image, x, y)
         plt.imshow(image)
         plt.show()
 
-    return center[1], center[0]
+    return x, y
 
 
 def threshold(image, args):
@@ -143,10 +131,10 @@ def median_threshold(x):
 
 def log_threshold(x):
     x = x.astype(np.float64)
-    values = np.empty(256)
+    values = np.empty(64)
     for i in range(values.size):
         values[i] = np.sum(np.log(((x - i) ** 2) + 1)) / x.size
-    return np.min(values)
+    return np.argmin(values)
 
 
 def transform(x, x0, y0, a, b, c, d):
@@ -178,20 +166,33 @@ def euler_equation_transformed(x, x0, y0, z0, sz, a, b, c, d):
 
 
 def clean_image(args, image):
-    y, x = center_finder_centroid(np.clip(image.astype(np.int16) - 15, 0, 255).astype(np.uint8), False)
+    z0 = threshold(image, args)
+    x, y = center_finder_centroid(np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8), False)
     x = int(x)
     y = int(y)
-    c = 100
+    c = 64
     x0 = max(x - c, 0)
-    x1 = min(x + c, image.shape[0])
+    x1 = min(x + c, image.shape[1])
     y0 = max(y - c, 0)
-    y1 = min(y + c, image.shape[1])
+    y1 = min(y + c, image.shape[0])
 
-    image = image[x0:x1, y0:y1]
+    image = image[y0:y1, x0:x1]
     z0 = threshold(image, args)
     image = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
 
-    return image, y0, x0
+    if args.debug:
+        print(z0)
+
+    return image, x0, y0, x1, y1
+
+
+def draw_crosshair(image, x, y):
+    cx = int(round(x))
+    cy = int(round(y))
+    for i in range(image.shape[1]):
+        image[cy, i] = 127
+    for i in range(image.shape[0]):
+        image[i, cx] = 127
 
 
 def main():
@@ -208,7 +209,7 @@ def main():
 
     image_path = args.filepath
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    cropped_image, x0, y0 = clean_image(args, image)
+    cropped_image, x0, y0, x1, y1 = clean_image(args, image)
 
     if args.method == METHODS.CENTROID.value:
         x, y = center_finder_centroid(cropped_image, args.debug)
@@ -227,13 +228,7 @@ def main():
     print("{},{}".format(x, y))
 
     if args.debug:
-        x = int(round(x))
-        y = int(round(y))
-        for i in range(image.shape[1]):
-            image[y, i] = 127
-        for i in range(image.shape[0]):
-            image[i, x] = 127
-
+        draw_crosshair(image, x, y)
         plt.imshow(image)
         plt.show()
 
