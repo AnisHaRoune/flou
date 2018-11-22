@@ -1,4 +1,5 @@
 import cv2
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 from enum import Enum
@@ -131,7 +132,7 @@ def median_threshold(x):
 
 def log_threshold(x):
     x = x.astype(np.float64)
-    values = np.empty(64)
+    values = np.empty(math.ceil((mean_threshold(x))))
     for i in range(values.size):
         values[i] = np.sum(np.log(((x - i) ** 2) + 1)) / x.size
     return np.argmin(values)
