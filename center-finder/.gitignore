@@ -1,4 +1,2 @@
 #Ignore l'environnement virtuel
 venv/
-
-*.csv
