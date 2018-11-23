@@ -226,7 +226,7 @@ def main():
     x += x0
     y += y0
 
-    print("{},{}".format(x, y))
+    print("{};{}".format(x, y))
 
     if args.debug:
         draw_crosshair(image, x, y)
