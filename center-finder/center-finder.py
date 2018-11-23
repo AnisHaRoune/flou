@@ -1,4 +1,5 @@
 import cv2
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 from enum import Enum
@@ -21,8 +22,7 @@ class METHODS(Enum):
 class ThresholdMethods(Enum):
     MIN = 'min'
     MEAN = 'mean'
-    ABS = 'abs'
-    SQUARE = 'square'
+    MEDIAN = 'median'
     LOG = 'log'
 
 
@@ -108,10 +108,8 @@ def threshold(image, args):
         return min_threshold(image)
     elif args.threshold_method == ThresholdMethods.MEAN.value:
         return mean_threshold(image)
-    elif args.threshold_method == ThresholdMethods.SQUARE.value:
-        return square_threshold(image)
-    elif args.threshold_method == ThresholdMethods.ABS.value:
-        return abs_threshold(image)
+    elif args.threshold_method == ThresholdMethods.MEDIAN.value:
+        return median_threshold(image)
     elif args.threshold_method == ThresholdMethods.LOG.value:
         return log_threshold(image)
     elif args.z0 is not None:
@@ -121,30 +119,20 @@ def threshold(image, args):
 
 
 def min_threshold(x):
-    return x.min()
+    return np.min(x)
 
 
 def mean_threshold(x):
-    return x.mean()
+    return np.mean(x)
 
 
-def abs_threshold(x):
-    values = np.empty(64)
-    for i in range(values.size):
-        values[i] = np.sum(abs(x - i)) / x.size
-    return np.argmin(values)
-
-
-def square_threshold(x):
-    values = np.empty(64)
-    for i in range(values.size):
-        values[i] = np.sum((x - i) ** 2) / x.size
-    return np.argmin(values)
+def median_threshold(x):
+    return np.median(x)
 
 
 def log_threshold(x):
     x = x.astype(np.float64)
-    values = np.empty(64)
+    values = np.empty(math.ceil((mean_threshold(x))))
     for i in range(values.size):
         values[i] = np.sum(np.log(((x - i) ** 2) + 1)) / x.size
     return np.argmin(values)
@@ -198,39 +186,6 @@ def clean_image(args, image):
 
     return image, x0, y0, x1, y1
 
-    # https://stackoverflow.com/a/46146544
-    '''
-    z0 = threshold(image, args)
-    mask = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
-
-    _, mask = cv2.threshold(mask, 0, 255, cv2.THRESH_BINARY)
-    image_comp = cv2.bitwise_not(mask)
-
-    kernel1 = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]], np.uint8)
-    kernel2 = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]], np.uint8)
-    hitormiss1 = cv2.morphologyEx(mask, cv2.MORPH_ERODE, kernel1)
-    hitormiss2 = cv2.morphologyEx(image_comp, cv2.MORPH_ERODE, kernel2)
-    hitormiss = cv2.bitwise_and(hitormiss1, hitormiss2)
-    hitormiss_comp = cv2.bitwise_not(hitormiss)
-    mask = cv2.bitwise_and(mask, mask, mask=hitormiss_comp)
-
-    mask, contours, _ = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    contour = max(contours, key=cv2.contourArea)
-    x, y, w, h = cv2.boundingRect(contour)
-    print(x, y)
-    c = 100
-    x0 = max(x - c, 0)
-    x1 = min(x + c, image.shape[1])
-    y0 = max(y - c, 0)
-    y1 = min(y + c, image.shape[0])
-    image = image[y0:y1, x0:x1]
-
-    z0 = threshold(image, args)
-    image = np.clip(image.astype(np.int16) - z0, 0, 255).astype(np.uint8)
-
-    return image, x0, y0
-    '''
-
 
 def draw_crosshair(image, x, y):
     cx = int(round(x))
@@ -248,8 +203,8 @@ def main():
                         choices=[METHODS.CENTROID.value, METHODS.CIRCLE.value, METHODS.DIFFRACTION.value,
                                  METHODS.INVERTED_SQUARE.value, METHODS.EULER.value])
     parser.add_argument('--threshold_method', '-t',
-                        choices=[ThresholdMethods.MIN.value, ThresholdMethods.MEAN.value, ThresholdMethods.ABS.value,
-                                 ThresholdMethods.SQUARE.value, ThresholdMethods.LOG.value])
+                        choices=[ThresholdMethods.MIN.value, ThresholdMethods.MEAN.value, ThresholdMethods.MEDIAN.value,
+                                 ThresholdMethods.LOG.value])
     parser.add_argument('--debug', '-d', action="store_true")
     args = parser.parse_args()
 

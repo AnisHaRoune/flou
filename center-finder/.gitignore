@@ -1,2 +1,4 @@
 #Ignore l'environnement virtuel
 venv/
+#Ignore le workspace de pycharm
+.idea/

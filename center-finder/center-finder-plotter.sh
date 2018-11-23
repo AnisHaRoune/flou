@@ -16,5 +16,4 @@ do
 	i=$((i+1))
 done
 
-
 deactivate
