@@ -18,10 +18,10 @@ Paramètres obligatoires :
 ### Exemple
 Sous Linux :
 ```bash
-./capture.sh /dev/ttyUSB0 3 -2 mm exemple
+./capture.sh /dev/ttyUSB0 1 -2 mm 3 exemple
 ```
 Sous Windows:
 ```powershell
-./capture.ps1 COM3 3 -2 mm exemple
+./capture.ps1 COM3 2 -5 mm 2 exemple
 ```
-Prends 3 photos à tout les 2 mm (vers l'arrière, puisque -2 est négatif). Les noms des images seront "exemple0.jpg", "exemple1.jpg" et "exemple2.jpg" et ils seront dans le dossier "captures", créé au besoin par l'utilitaire.
+Prends 2 photos à tout les 5 mm (vers l'arrière, puisque -2 est négatif), et répète cette opération 2 fois. Les noms des images seront "00000000-exemple-0mm-0.png", "00000001-exemple-0mm-1.png", "00000002-exemple-5mm-0.png" et "00000003-exemple-5mm-1.png" et ils seront dans le dossier "captures", créé au besoin par l'utilitaire.

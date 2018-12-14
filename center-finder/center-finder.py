@@ -205,6 +205,7 @@ def main():
     parser.add_argument('--threshold_method', '-t',
                         choices=[ThresholdMethods.MIN.value, ThresholdMethods.MEAN.value, ThresholdMethods.MEDIAN.value,
                                  ThresholdMethods.LOG.value])
+    parser.add_argument('-z0', type=float)
     parser.add_argument('--debug', '-d', action="store_true")
     args = parser.parse_args()
 
