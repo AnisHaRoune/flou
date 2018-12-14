@@ -30,14 +30,14 @@ La sortie est une coordonnée cartésienne 2D sous la forme x;y.
 * {centroid,circle,diffraction,isquare,euler} est la méthode à utilisée pour trouver le laser.
 * threshold_method est la méthode utilisé pour nettoyer le bruit.
 * Si threshold_method n'est pas utilisé, la valeur de z0 sera utilisée pour éliminer le bruit. Si z0 n'est pas spécifié non plus, le bruit sera gardé.
-* debug permet d'afficher des images au long du processus pour visualer le centre et afficher des informations supplémentaires lors du débugage.
+* debug permet d'afficher des images au long du processus pour visualer le centre et afficher des informations supplémentaires lors du débogage.
 
 Exemple d'utilisation :
 ```bash
 python center-finder.py test-data/laser.bmp diffraction -t log
 147.78168193964166;193.97345372122828
 ```
-Exemple d'image de debugage :    
+Exemple d'image de débogage :    
 ![centre d'un laser](https://github.com/steven-pigeon/flou/blob/master/center-finder/centerfinder-debug.png "Centre d'un laser")
 
 ### center-finder-plotter.sh
