@@ -1,4 +1,4 @@
-# Outils de calibration de la caméra
+# Outil de calibration de la caméra
 
 ## Description
 Affiche une vue de la camera avec la meilleur resolution possible et un viseur en son centre.
@@ -9,8 +9,7 @@ Affiche une vue de la camera avec la meilleur resolution possible et un viseur e
 sudo apt-get install cmake
 sudo apt-get install gnuplot
 ```
-#### Installation d'OpenCV
-(https://docs.opencv.org/4.0.0/d7/d9f/tutorial_linux_install.html)
+#### [Installation d'OpenCV](https://docs.opencv.org/4.0.0/d7/d9f/tutorial_linux_install.html)
 ```bash
 sudo apt-get install git
 sudo apt-get install build-essential
@@ -20,13 +19,14 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
 ```bash
 cd ~/<my_working_directory>
 git clone https://github.com/opencv/opencv.git
+cd opencv
 mkdir build
 cd build
 cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
-make -j7 # runs 7 jobs in parallel
+make
 sudo make install
 ```
-### Compilation
+### Compilation de l'outil de calibration de la caméra
 ```bash
 cmake .
 make
