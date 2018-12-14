@@ -37,7 +37,18 @@ Exemple d'utilisation :
 python center-finder.py test-data/laser.bmp diffraction -t log
 147.78168193964166;193.97345372122828
 ```
-Exemple d'image de debugage :  
+Exemple d'image de debugage :    
 ![centre d'un laser](https://github.com/steven-pigeon/flou/blob/master/center-finder/centerfinder-debug.png "Centre d'un laser")
 
 ### center-finder-plotter.sh
+```bash
+./center-finder-plotter.sh method threshold_method images_dir
+```
+Ce script va passer en ordre sur chaque image dans le dossier "images_dir" et appliquer le script "center-finder.py" sur chacune d'elles.
+Les résultats sont compilés dans un fichier CSV. Une ligne est formattée tel que suit :
+```ID;PATH;X;Y```
+Exemple d'utilisation :
+```bash
+./center-finder-plotter.sh isquare mean images/
+```
+Cette commande créera le fichier "images_isquare_mean.csv".
