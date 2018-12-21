@@ -1,7 +1,7 @@
 ﻿# Outils de captures
 
 ## Description
-Cet outil permet de prendre des photos à interval régulier sur une plage de distance, grâce à la plateforme.
+Cet outil permet de prendre des photos à interval régulier sur une plage de distance, grâce à la plateforme. La version Linux n'est plus maintenue, ni son code, ni sa documentation.
 
 ## Dépendance sous Linux
 ```bash
@@ -14,7 +14,6 @@ Paramètres obligatoires :
 2. nombre de photo
 3. distance des intervales
 4. Unité de distance
-5. Nom de l'image
 ### Exemple
 Sous Linux :
 ```bash
