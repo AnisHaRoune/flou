@@ -6,14 +6,14 @@ Quelques outils pour trouver le centre d'un laser dans une image ou dans une col
 ## Installation
 ### Dépendances
 * Python 3
-* Les dépendances listées dans le fichier "requirements.txt"
-De facon optionnel, les dependances peuvent etre installees dans un environnement virtuel : 
+* Les dépendances listées dans le fichier "requirements.txt"  
+De façon optionnel, les dépendances peuvent être installées dans un environnement virtuel :
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 ```
-Voici comment installer les dependances :
+Voici comment installer les dépendances :
 ```bash
 pip install -r requirements.txt
 ```
