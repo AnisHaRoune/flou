@@ -7,7 +7,7 @@ Quelques outils pour trouver le centre d'un laser dans une image ou dans une col
 ### Dépendances
 * Python 3
 * Les dépendances listées dans le fichier "requirements.txt"
-<a/>
+#### Installer les dépendances
 De façon optionnel, les dépendances peuvent être installées dans un environnement virtuel :
 ```bash
 python3 -m venv venv
