@@ -38,7 +38,7 @@ python center-finder.py test-data/laser.bmp diffraction -t log
 147.78168193964166;193.97345372122828
 ```
 Exemple d'image de débogage :  
-![centre d'un laser](https://github.com/steven-pigeon/flou/blob/master/center-finder/centerfinder-debug.png "Centre d'un laser")
+![centre d'un laser](https://github.com/steven-pigeon/flou/blob/master/distance-finder/center-finder/centerfinder-debug.png "Centre d'un laser")
 
 ### center-finder-plotter.sh
 ```bash
