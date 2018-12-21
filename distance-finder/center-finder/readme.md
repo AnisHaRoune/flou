@@ -61,7 +61,7 @@ Exemple d'image de débogage :
 Ce script va passer en ordre sur chaque image dans le dossier "images_dir" et appliquer le script "center-finder.py" sur chacune d'elles.
 Les résultats sont compilés dans un fichier CSV. Une ligne est formattée tel que suit :
 ```
-ID;PATH;X;Y
+distance-en-micromètre;index-de-capture;X;Y
 ```
 Exemple d'utilisation :
 ```bash
