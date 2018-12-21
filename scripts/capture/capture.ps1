@@ -7,18 +7,24 @@
     [Parameter(Mandatory=$true)]
     [int] $distance,
     [Parameter(Mandatory=$true)]
-    [string] $unity,
+    [string] $unit,
     [int] $number_of_captures_by_step = 1,
     [int] $max_error_count = 10,
     [string] $camera_name = "STC-MBS231U3V(16H6167)"
 )
 
-if (($unity -ne "cm") -and ($unity -ne "mm") -and ($unity -ne "um"))
+if (($unit -ne "cm") -and ($unit -ne "mm") -and ($unit -ne "um"))
 {
-    Write-Error "unity must be cm, mm or um."
+    Write-Error "unit must be cm, mm or um."
 }
 else
 {
+	switch ($unit)
+    {
+        "cm" { $distance *= 10000 }
+        "mm" { $distance *= 1000 }
+    }
+
     New-Item -ItemType Directory -Name "captures" -Force | Out-Null
     $port = new-Object System.IO.Ports.SerialPort $COM, 9600, None, 8, one
 
@@ -34,10 +40,11 @@ else
             for($j = 0; $j -lt $number_of_captures_by_step; $j++)
             {
                 Write-Host "ffmpeg capture..."
-                $distance_index = $distance * $i
+				$distance_index = [math]::abs($distance) * $i
 				$distance_name = $distance_index.ToString().PadLeft(8, "0")
 				$capture_index = $j.ToString().PadLeft(8, "0")
-                $filepath = "captures\$distance_name-$unity-$capture_index.png"
+				$filename = "$distance_name-$capture_index"
+                $filepath = "captures\$filename.png"
                 $result = .\ffmpeg-3.4.2-win32-static\bin\ffmpeg.exe -loglevel error -f dshow -rtbufsize 128M -i video="$camera_name" -vf vflip -vframes 1 "$filepath" -y 2>&1
                 $error = $result -match "error"
                 if ($error)
@@ -60,7 +67,7 @@ else
                 }
             }
 
-            $command = "m$distance$unity"
+            $command = "m"+"$distance"+"um"
             Write-Host $command
             $port.WriteLine($command)
             do
