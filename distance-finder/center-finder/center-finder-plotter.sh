@@ -4,7 +4,8 @@ source venv/bin/activate
 method=$1
 threshold_method=$2
 images_dir=$3
-output_file="center-finder_${method}_${threshold_method}.csv"
+parentname="$(basename "$images_dir")"
+output_file="${parentname}_${method}_${threshold_method}.csv"
 
 for image in $images_dir/*;
 do
